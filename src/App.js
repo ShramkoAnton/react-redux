@@ -1,40 +1,30 @@
 import React from 'react';
-import './App.css';
-
-let todos = [];
-
-class NewTodos extends React.Component {
-  render() {
-    const newsTemplate = this.props.data.map(function(item, index) {
-      return (
-        <div key={index}>
-          <p className="news__author">{todos.value}</p>
-        </div>
-      )
-    })
-    return (
-      <div className="news">
-        {newsTemplate}
-      </div>
-    )
-  }
-}
-
-function addTodos() {
-  todos.push(document.querySelector('input'))
-}
+import TodoList from './Todo/TodoList'
 
 function App() {
+  const [todos, setTodos] = React.useState([
+    {id:1, completed: false, title: 'buy bread'},
+    {id:2, completed: false, title: 'buy oil'},
+    {id:3, completed: false, title: 'buy milk'}
+  ])
+
+  function toggleTodo(id) {
+    setTodos(
+      todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed
+      }
+      return todo
+      })
+    )
+  }
   return (
-    <React.Fragment>
-      <div className="App">
-        <h2>ToDo list</h2>
-        <input className="input" type="text" placeholder="write here"/>
-        <button onClick={addTodos}>Add</button>
-      </div>
-      <NewTodos data={todos}/>
-    </React.Fragment>
-  );
+    <div className="wrapper">
+      <h1>React tutorial</h1>
+
+      <TodoList todos={todos} onToggle={toggleTodo}/>
+    </div>
+  )
 }
 
 export default App;
