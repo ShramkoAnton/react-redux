@@ -1,33 +1,20 @@
 import React from 'react'
 
-const styles = {
-    li: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '.5rem 1rem',
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        marginBottom: '.5rem'
-    },
-
-    input: {
-        marginRight: '1rem'
-    }
-}
-
-export default function TodoItem({todo, index, onChange}) {
+function TodoItem({todo, index, onChange, removeTodo}) {
+    
     const classes = []
 
     if (todo.completed){
         classes.push('done')
     }
+
     return (
-        <li style={styles.li}>
+        <li className="li">
             <span className={classes.join(' ')}>
-                <input type="checkbox" 
+                <input className="input"
+                contentEditable="false"
+                type="checkbox" 
                 checked={todo.completed}
-                style={styles.input} 
                 onChange={() => onChange(todo.id)}
                 />
                 <strong>{index+1 }</strong>
@@ -35,7 +22,8 @@ export default function TodoItem({todo, index, onChange}) {
                 {todo.title}
             </span>
 
-            <button className="rm">&times;</button>
+            <button className="rm" onClick={() => removeTodo(todo.id)}>&times;</button>
         </li>
     )
 }
+export default TodoItem
