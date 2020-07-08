@@ -10,6 +10,11 @@ function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
     if (todo.completed){
         classes.push('done')
     }
+    function ewg() {
+        editTodo(todo.id, value)
+        setEdit(!edit)
+        setValue(todo.title)
+    }
 
     return (
         <li className="li">
@@ -21,11 +26,10 @@ function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
                 />
                 <strong>{index+1 }</strong>
                 &nbsp;
-                {edit ? <input value={value} onChange={event => setValue(event.target.value)} 
-                onKeyDown={event => event.key==='Enter' && editTodo(todo.id, value)}
-                onKeyUp={event => event.key==='Enter' && setEdit(!edit)}
-                />
-                : `${todo.title}`}
+                {edit ? <input value={value} 
+                onChange={event => setValue(event.target.value)}
+                onKeyDown={event => event.key==='Enter'&& ewg()}
+                /> : `${todo.title}`}
             </span>
             <div style={{display:'flex', flexDirection:'column'}}>
                 <button className="editBtn" onClick={() => setEdit(!edit)}>edit</button>

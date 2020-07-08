@@ -31,10 +31,10 @@ function App() {
   function editTodo(id, value) {
     setTodos(
       todos.map(todo => {
-      if (todo.id === id && value !=='') {
-        todo.title = value
-      }
-      return todo
+        if (todo.id === id && value !=='') {
+          todo.title = value
+        } 
+        return todo
       })
     )
   }
