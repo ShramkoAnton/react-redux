@@ -12,6 +12,7 @@ export default function TodoList(props) {
                 index={index} 
                 onChange={props.onToggle}
                 removeTodo={props.removeTodo}
+                editTodo={props.editTodo}
                 />
             }) }
         </ul>

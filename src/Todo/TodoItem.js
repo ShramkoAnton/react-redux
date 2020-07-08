@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-function TodoItem({todo, index, onChange, removeTodo}) {
+function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
     
     const classes = []
+
+    const [edit, setEdit] = useState(false)
+    const [value, setValue] = useState(todo.title)
 
     if (todo.completed){
         classes.push('done')
@@ -12,17 +15,22 @@ function TodoItem({todo, index, onChange, removeTodo}) {
         <li className="li">
             <span className={classes.join(' ')}>
                 <input className="input"
-                contentEditable="false"
                 type="checkbox" 
                 checked={todo.completed}
                 onChange={() => onChange(todo.id)}
                 />
                 <strong>{index+1 }</strong>
                 &nbsp;
-                {todo.title}
+                {edit ? <input value={value} onChange={event => setValue(event.target.value)} 
+                onKeyDown={event => event.key==='Enter' && editTodo(todo.id, value)}
+                onKeyUp={event => event.key==='Enter' && setEdit(!edit)}
+                />
+                : `${todo.title}`}
             </span>
-
-            <button className="rm" onClick={() => removeTodo(todo.id)}>&times;</button>
+            <div style={{display:'flex', flexDirection:'column'}}>
+                <button className="editBtn" onClick={() => setEdit(!edit)}>edit</button>
+                <button className="rm" onClick={() => removeTodo(todo.id)}>&times;</button>
+            </div>
         </li>
     )
 }
