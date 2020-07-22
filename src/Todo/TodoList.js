@@ -1,20 +1,30 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import TodoItem from './TodoItem'
 
 
-export default function TodoList(props) {
+const TodoList = (syncPosts) => {
     return (
         <ul className="ul">
-            { props.todos.map((todo, index) => {
+            { syncPosts.todos.map((todo, index) => {
                 return <TodoItem 
                 todo={todo} 
                 key={todo.id} 
                 index={index} 
-                onChange={props.onToggle}
-                removeTodo={props.removeTodo}
-                editTodo={props.editTodo}
+                onChange={syncPosts.onToggle}
+                removeTodo={syncPosts.removeTodo}
+                editTodo={syncPosts.editTodo}
                 />
             }) }
         </ul>
     )
 }
+
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        syncPosts: state.todos.todos
+    }
+}
+
+export default connect(mapStateToProps, null)(TodoList)

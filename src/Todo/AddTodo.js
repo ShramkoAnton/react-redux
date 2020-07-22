@@ -1,4 +1,6 @@
 import React, {useState} from "react"
+import { connect } from 'react-redux'
+import { createTodo } from '../redux/actions'
 
 function AddTodo({onCreate}) {
 
@@ -13,6 +15,13 @@ function AddTodo({onCreate}) {
         }
     }
 
+    const [title, setTitle] = useState('')
+
+    const newTodo = {
+        title, id:Date.now().toString()
+    }
+
+    createTodo(newTodo)
     return(
         <form style={{marginBottom: '1rem'}} onSubmit={submitHandler}>
             <input 
@@ -24,4 +33,8 @@ function AddTodo({onCreate}) {
     )
 }
 
-export default AddTodo
+const mapDispatchToProps = {
+    createTodo: createTodo
+}
+
+export default connect(null, mapDispatchToProps)(AddTodo)

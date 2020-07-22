@@ -14,6 +14,7 @@ function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
         editTodo(todo.id, value)
         setEdit(!edit)
         setValue(todo.title)
+        
     }
 
     return (
@@ -35,4 +36,7 @@ function TodoItem({todo, index, onChange, removeTodo, editTodo}) {
         </li>
     )
 }
+
+
+
 export default TodoItem

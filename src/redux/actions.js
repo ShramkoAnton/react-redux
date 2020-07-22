@@ -1,10 +1,8 @@
-export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
+import { CREATE_TODO } from "./types";
 
-export function addTodo(text) {
-    return { type: ADD_TODO, text };
-  }
-  
-  export function completeTodo(index) {
-    return { type: COMPLETE_TODO, index };
-  }
+export function createTodo(todo) {
+  return { 
+    type: CREATE_TODO, 
+    payload: todo
+  };
+}
