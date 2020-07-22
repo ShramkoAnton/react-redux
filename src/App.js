@@ -3,8 +3,6 @@ import TodoList from './Todo/TodoList'
 import AddTodo from './Todo/AddTodo';
 
 function App() {
-
-
   const initialTodos =() => JSON.parse(localStorage.getItem('todos')) || []
 
   const [todos, setTodos] = useState(initialTodos);

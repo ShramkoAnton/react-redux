@@ -15,7 +15,10 @@ function AddTodo({onCreate}) {
 
     return(
         <form style={{marginBottom: '1rem'}} onSubmit={submitHandler}>
-            <input placeholder="write something interesting" value={value} onChange={event => setValue(event.target.value)}/>
+            <input 
+            value={value} 
+            onChange={event => setValue(event.target.value)}
+            />
             <button type="submit">Add</button>
         </form>
     )
